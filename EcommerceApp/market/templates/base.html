@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <title>
+            {% block title %}
+            {% endblock%}
+        </title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril Fatface">
+
+        <style>
+
+            body {
+                font-family: "abril Fatface",monospace;
+    
+            }
+            a.nav-btn{
+                color: #13213c;
+                padding-left: 5px;
+            }
+
+            .nav-right {
+  float: right;
+  width: 33.33%;
+  padding: 15px;
+}
+    .nav-left {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+    .btn-right {
+        float: right; 
+    }
+
+    .btn {
+        color: #FFFFFF;
+        background-color: #13213c;
+    }
+
+    .bg-grey {
+        background-color: #e5e5e5;
+        height: 70px;
+    }
+    .bg-blue {
+        background-color: #13213c;
+    }
+    .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+    .box {
+        clear: both;
+       
+    }
+    #footer {
+        clear: both;
+        background-color: #13213c;
+        height: 70px;
+        color: #FFFFFF;
+    }
+
+    #main-body {
+        clear: both;
+        width: 70%;
+        background-color: #e5e5e5;
+        margin: auto;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        padding: 25px;
+        text-align: center;
+        
+    }
+    
+    #main-text {
+        float: right;
+        width: 50%;
+        background-color: #e5e5e5;
+    }
+    #main-img {
+        float: left;
+        width: 300px;
+        height: 300px;
+    }
+    #main-img-right {
+        float: right;
+        width: 400;
+        height: 210;
+    
+    }
+    #buy-sec {
+        float: left;
+        width: 50%;
+    }
+    
+    
+
+        </style>
+    </head>
+    <body>
+        <div id="header" class="bg-grey clearfix">
+            <div class="nav-left">
+                <img src="{{url_for('static',filename='ittar.png')}}" alt="Logo" width="30" height="30">
+                <a href="{{url_for('home_page')}}" class="nav-btn">
+               Home  
+                </a>
+                
+                <a href="{{url_for('market_page')}}" class="nav-btn">
+                Market
+                </a>
+            </div>
+            {% if current_user.is_authenticated %}
+            <div class="nav-right">
+                <a class="btn-right nav-btn"
+                    href="{{url_for('logout_page')}}">
+                Logout
+                </a>
+
+                <a class="btn-right nav-btn">
+                {{ current_user.prettier_budget }}
+                </a>
+
+                <a  class="btn-right nav-btn" 
+                    href="{{url_for('login_page')}}">
+                {{current_user.username}}
+                </a>
+                
+            </div>
+            {% else %}
+            <div class="nav-right nav-btn">
+                <a class="btn-right"
+                    href="{{url_for('Signin_page')}}">
+                Signin
+                </a>
+                <a  class="btn-right nav-btn" 
+                    href="{{url_for('login_page')}}">
+                Login
+                </a>
+                
+            </div>
+            {% endif %}
+        </div>
+
+        {% block content %}
+        {% endblock %}
+        
+
+        <div id="footer" class="bg-blue clearfix">
+            <div id="icons" class="nav-right bg-blue">
+            <img src="{{url_for('static',filename='facebook.png')}}" alt="f" 
+                            width=30 height="30">
+            <img src="{{url_for('static',filename='gmail.png')}}" alt="G" 
+            width=30 height="30">   
+            <a id="rights">All Rights Reserved</a>            
+            </div>
+
+        </div>
+
+      <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    </body>
+</html>
