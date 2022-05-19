@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+Welcome to World Best Attar Market
+{% endblock %}
+{% block content %}
+<div id="main-body" class="clearfix">
+    <div id="box1" class="box">
+        <img src="{{url_for('static',filename='attar.jpeg')}}" alt="Attar image" 
+        width=300 height="300" id="main-img">  
+        <div id="main-text"><h1>
+            Attar Logo
+            </h1>
+            <h4>
+            Welcome to Attar logo Home page.  
+            We are the best 
+            attar selling site in the world
+            </h4>  
+        </div>
+    </div>
+    <div id="box2" class="box">
+        <img src="{{url_for('static',filename='attar2.png')}}" alt="Attar image" 
+         id="main-img-right">  
+        <div id="main-text"><h1>
+            Attar Logo
+            </h1>
+            <h4>
+            Welcome to Attar logo Home page.  
+            We are the best 
+            attar selling site in the world
+            </h4>  
+        </div>
+    </div>
+</div>
+
+{% endblock %}

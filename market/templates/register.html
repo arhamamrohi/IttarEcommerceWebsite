@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+Signin to Attar Market
+{% endblock %}
+{% block content %}
+<div id="main-body">
+    <h1>
+        Sign-in to Attar Market for free
+    </h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <h2>Please create your account</h2>
+        <br>
+        {{ form.username.label() }}<br>
+        {{ form.username(class="form-control",placeholder="Username")}}<br>
+
+        {{ form.email_address.label() }}<br>
+        {{ form.email_address(class="form-control",placeholder="Email Address")}}<br>
+
+        {{ form.password1.label() }}<br>
+        {{ form.password1(class="form-control",placeholder="Password")}}<br>
+        
+        {{ form.password2.label() }}<br>
+        {{ form.password2(class="form-control",placeholder="Confirm Password")}}
+        <br>
+
+        <div>
+        <h4>Already have an account</h4>
+        <a href="{{url_for('login_page')}}">Login</a>
+        </div>
+        {{ form.submit(class="btn")}}
+    </form>
+</div>
+{% endblock %}

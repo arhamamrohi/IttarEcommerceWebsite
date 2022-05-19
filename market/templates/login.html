@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+Login to Attar Market
+{% endblock %}
+{% block content %}
+<div id="main-body">
+    <h1>
+        Login to Attar Market to start buying!Vali={{vali}}
+    </h1>
+    
+    <form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.username.label() }}<br>
+    {{ form.username(class="form-control",placeholder="User name")}}<br>
+    {{ form.password.label() }}<br>
+    {{ form.password(class="form-control",placeholder="Password")}}
+    
+    <br>
+    <div>
+        <h4>Do not have an account?</h4>
+        <a href="{{url_for('Signin_page')}}">Register</a>"
+    </div>
+
+    {{ form.submit(class="btn") }}
+    </form>
+
+</div>
+{% endblock %}

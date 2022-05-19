@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+Attar Market Shop
+{% endblock %}
+{% block content %}
+<div id="main-body" class="clearfix">
+    <div id="buy-sec">
+    <h1>
+        Welcom to Attar Market Shop
+    </h1>
+    <h2>
+        We have the best attar in the world.
+        {{ c_user.username }}
+        You wont find these items anywhere.
+    </h2>
+    {% for item in items %}
+    {% include 'includes/items_modals.html' %}
+    
+    <h2>{{item.name}}</h2>
+    <h3>Price {{item.price}}</h3>
+    <h3>{{item.description}}</h3>
+    
+    <button class="btn" data-toggle="modal" 
+        data-target="#Modal-PurchaseConfirm-{{ item.id }}">Purchase this Item</button>
+    {% endfor  %}
+    </div>
+
+    <div class="nav-right">
+    <h2>Sell your items</h2>
+    
+    {% for owned_item in owned_items %}
+    {% include 'includes/owned_items_modals.html' %}
+
+    <h5>{{ owned_item.name }}</h5>
+    <button type="button"  class="btn" data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+           Sell this Item  </button>
+
+    <p class="card-text"><strong>
+    This item costs {{ owned_item.price }}$
+    </strong></p>
+
+    {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}
