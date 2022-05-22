@@ -13,6 +13,7 @@ Flask-Login = "*"
 Flask-WTF = "*"
 WTForms = "*"
 wtforms-validators = "*"
+email-validator = "*"
 
 [dev-packages]
 

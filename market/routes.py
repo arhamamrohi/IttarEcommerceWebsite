@@ -1,4 +1,3 @@
-from crypt import methods
 from market import app
 from flask import render_template, redirect, url_for, flash, request
 from market.models import Item, User
