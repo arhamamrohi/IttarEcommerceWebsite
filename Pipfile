@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 gunicorn = "*"
-crypt = "*"
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-Bcrypt = "*"
