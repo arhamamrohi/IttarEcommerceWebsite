@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-Login to Attar Market
+Signin to Attar Market
         </title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -18,19 +18,24 @@ Login to Attar Market
 
            #main-body   {     
                 text-align: center;
-                width: 70%;
-                
+                width: 50%;
                 margin-left: auto;
                 margin-right: auto;
-                
-               
             }
+
+
+            #img-big {
+                margin-top: 30px;
+                margin-bottom: 50px;
+            }
+
 
             #form-body {
                 background-color: FFFFFF;
                 border-style: solid;
-                border-color: 8C8889;
+                border-color: c9c9c9;
                 border-width: 0.25px;
+                border-radius: 10px;
                 padding: 5px;
                  }
 
@@ -48,7 +53,8 @@ Login to Attar Market
 <div id="main-body">
 
     
-    <img src="{{url_for('static',filename='ittar.png')}}" alt="Logo" id="img-big" width="200px" height="200px">
+    <img src="{{url_for('static',filename='ittar-vert.png')}}" alt="Logo" id="img-big" width="200px" height="200px"
+      id="img-big">
     
     <div id="form-body">
          <h1>
@@ -79,3 +85,5 @@ Login to Attar Market
     </form>
     </div>
 </div>
+</body>
+</html>
