@@ -16,6 +16,23 @@ Signin to Attar Market
                 font-family: "abril Fatface",monospace;
                  }
 
+            h1 {
+                font-size: 22px;
+    
+            }
+             h2 {
+                font-size: 19px;
+    
+            }
+             h3 {
+                font-size: 16px;
+    
+            }
+             h4 {
+                font-size: 13px;
+    
+            }
+
            #main-body   {     
                 text-align: center;
                 width: 50%;
@@ -44,6 +61,15 @@ Signin to Attar Market
             background-color: #13213c;
             }
 
+             @media screen and (max-width: 600px) {
+    
+    #main-body   
+            {     
+                width: 80%;
+            }
+
+    }
+
 
         </style>
         </head>
@@ -53,7 +79,7 @@ Signin to Attar Market
 <div id="main-body">
 
     
-    <img src="{{url_for('static',filename='ittar-vert.png')}}" alt="Logo" id="img-big" width="200px" height="200px"
+    <img src="{{url_for('static',filename='ittar-vert.png')}}" alt="Logo" id="img-big" width="150px" height="150px"
       id="img-big">
     
     <div id="form-body">

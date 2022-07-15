@@ -1,7 +1,7 @@
 from market import app
 from flask import render_template, redirect, url_for, flash, request
 from market.models import Item, User
-from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
+from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, AddItemForm
 from market import db
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -80,10 +80,14 @@ def login_page():
             
     return render_template('login.html',form=form)
 
-@app.route('/item_purchase/<item_no>')
-def item_purchase(item_no):
-    req_item = Item.query.filter_by(id=item_no).first()
-    return render_template("item_purchase.html",item = req_item)
+@app.route('/AddItems', methods=['GET','POST'])
+def Add_items_page():
+    form = AddItemForm()
+    if form.validate_on_submit():
+        img_data = form.img.data
+        #print(img_data)
+        img_data.save(r"E:\Arham_Folder\sharedfolder\EcommerceApp\uploads\img.png")
+    return render_template('add_items.html',form=form)
   
 @app.route('/logout')
 def logout_page():
