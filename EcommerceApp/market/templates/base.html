@@ -12,10 +12,10 @@
 
             body {
                 font-family: "abril Fatface",monospace;
-    
+                background-color: #13213c;
             }
             a.nav-btn{
-                color: #13213c;
+                border-radius: 40px;
                 padding-left: 5px;
             }
 
@@ -45,11 +45,7 @@
     .bg-blue {
         background-color: #13213c;
     }
-    .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+  
     .box {
         clear: both;
        
@@ -101,27 +97,27 @@
     <body>
         <div id="header" class="bg-grey clearfix">
             <div class="nav-left">
-                <img src="{{url_for('static',filename='ittar.png')}}" alt="Logo" width="30" height="30">
-                <a href="{{url_for('home_page')}}" class="nav-btn">
+                <img src="{{url_for('static',filename='ittar.png')}}" alt="Logo" width="50" height="50">
+                <a href="{{url_for('home_page')}}" class="nav-btn btn">
                Home  
                 </a>
                 
-                <a href="{{url_for('market_page')}}" class="nav-btn">
+                <a href="{{url_for('market_page')}}" class="nav-btn btn">
                 Market
                 </a>
             </div>
             {% if current_user.is_authenticated %}
             <div class="nav-right">
-                <a class="btn-right nav-btn"
+                <a class="btn-right nav-btn btn"
                     href="{{url_for('logout_page')}}">
                 Logout
                 </a>
 
-                <a class="btn-right nav-btn">
+                <a class="btn-right nav-btn btn">
                 {{ current_user.prettier_budget }}
                 </a>
 
-                <a  class="btn-right nav-btn" 
+                <a  class="btn-right nav-btn btn" 
                     href="{{url_for('login_page')}}">
                 {{current_user.username}}
                 </a>
@@ -129,11 +125,11 @@
             </div>
             {% else %}
             <div class="nav-right nav-btn">
-                <a class="btn-right"
+                <a class="nav-btn btn-right btn"
                     href="{{url_for('Signin_page')}}">
                 Signin
                 </a>
-                <a  class="btn-right nav-btn" 
+                <a  class="btn-right nav-btn btn" 
                     href="{{url_for('login_page')}}">
                 Login
                 </a>
@@ -150,7 +146,7 @@
             <div id="icons" class="nav-right bg-blue">
             <img src="{{url_for('static',filename='facebook.png')}}" alt="f" 
                             width=30 height="30">
-            <img src="{{url_for('static',filename='gmail.png')}}" alt="G" 
+            <img src="{{url_for('static',filename='gmail1.png')}}" alt="G" 
             width=30 height="30">   
             <a id="rights">All Rights Reserved</a>            
             </div>

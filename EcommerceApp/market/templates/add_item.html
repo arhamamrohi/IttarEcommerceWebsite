@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+Add Items
+{% endblock %}
+{% block content %}
+<style>
+    #footer{
+         transform : translate(0%,215%);
+    }
+</style>
+<div id="main-body">
+    <h1>
+        Add item to Database
+    </h1>
+    
+    <form method="post">
+    {{ form.hidden_tag() }}
+
+
+    {{ form.name.label()}}<br>
+    {{ form.name(class="form-control",placeholder="Name")}}<br>
+
+    {{ form.price.label()}}<br>
+    {{ form.price(class="form-control",placeholder="Price")}}<br>
+    {{ form.barcode.label()}}<br>
+    {{ form.barcode(class="form-control",placeholder="Barcode")}}<br>
+    {{ form.description.label()}}<br>
+    {{ form.description(class="form-control",placeholder="Barcode")}}<br>
+    
+    
+    <br>
+    
+
+    {{ form.submit(class="btn") }}
+    </form>
+
+</div>
+{% endblock %}

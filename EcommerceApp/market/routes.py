@@ -2,7 +2,7 @@ from crypt import methods
 from market import app
 from flask import render_template, redirect, url_for, flash, request
 from market.models import Item, User
-from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
+from market.forms import AddItemForm, RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
 from market import db
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -85,6 +85,21 @@ def login_page():
 def item_purchase(item_no):
     req_item = Item.query.filter_by(id=item_no).first()
     return render_template("item_purchase.html",item = req_item)
+
+@app.route('/add_item', methods=['GET','POST'])
+@login_required
+def add_item():
+    form = AddItemForm()
+    if form.validate_on_submit():
+        item_to_create = Item(name=form.name.data,
+                            price =form.price.data,
+                            barcode=form.barcode.data,
+                            description = form.description.data)
+        db.session.add(item_to_create)
+        db.session.commit()
+        flash(f"Item successfully added {item_to_create.name}", category='success')
+        return redirect(url_for('market_page')) 
+    return render_template('add_item.html',form=form)
   
 @app.route('/logout')
 def logout_page():
