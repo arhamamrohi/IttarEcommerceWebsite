@@ -4,11 +4,17 @@ Login to Attar Market
 {% endblock %}
 {% block content %}
 <style>
-    #footer{
-         transform : translate(0%,215%);
-    }
+    #main-body {
+        margin-top: 100px;
+        margin-bottom: 150px;
+    }    
 </style>
-<div id="main-body">
+
+
+<div id="main-body" >
+   <div class="flex justify-center items-center">
+    <img class="h-64 object-cover justify-items-center" src="{{url_for('static',filename='ittar.png')}}" alt="Logo">
+   </div>
     <h1>
         Login to Attar Market to start buying!Vali={{vali}}
     </h1>

@@ -1,3 +1,4 @@
+import os
 from crypt import methods
 from market import app
 from flask import render_template, redirect, url_for, flash, request
@@ -5,11 +6,25 @@ from market.models import Item, User
 from market.forms import AddItemForm, RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
 from market import db
 from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.utils import secure_filename
+
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+
 
 @app.route('/')
 @app.route('/home')
 def home_page():
-    return render_template('home.html')
+    items=Item.query.filter_by()
+    
+    items2 = []
+    for y in range(4):
+        x = items[y]
+        items2.append(x)
+        #print(x,x.__class__,type(x))
+    print(items2)
+    return render_template('home.html',items=items2)
     
 
 @app.route('/market',methods=['GET','POST'])
@@ -86,11 +101,39 @@ def item_purchase(item_no):
     req_item = Item.query.filter_by(id=item_no).first()
     return render_template("item_purchase.html",item = req_item)
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/add_item', methods=['GET','POST'])
 @login_required
 def add_item():
     form = AddItemForm()
     if form.validate_on_submit():
+        # check if the post request has the file part
+        print(request)
+        print(request.files)
+        print(request.url)
+        print( 'file' not in request.files)
+        print(request.files['img'])
+        print(request.files['img'].filename)
+        
+        if 'img' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['img']
+        print(file)
+        print(file.filename)
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            newname = form.name.data + ".png"
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], newname))
+            #return redirect(url_for('market_page'))
         item_to_create = Item(name=form.name.data,
                             price =form.price.data,
                             barcode=form.barcode.data,
@@ -105,4 +148,5 @@ def add_item():
 def logout_page():
     logout_user()
     flash("You have been logged out!", category='info')
+    
     return redirect(url_for("home_page"))

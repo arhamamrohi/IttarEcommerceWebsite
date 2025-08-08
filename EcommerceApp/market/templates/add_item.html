@@ -13,7 +13,7 @@ Add Items
         Add item to Database
     </h1>
     
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
 
 
@@ -26,7 +26,8 @@ Add Items
     {{ form.barcode(class="form-control",placeholder="Barcode")}}<br>
     {{ form.description.label()}}<br>
     {{ form.description(class="form-control",placeholder="Barcode")}}<br>
-    
+    {{ form.img.label()}}<br>
+    {{ form.img(class="form-control",placeholder="Select product image")}}<br>
     
     <br>
     

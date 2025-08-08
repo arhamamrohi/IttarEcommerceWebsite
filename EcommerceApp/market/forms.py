@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, PasswordField, SubmitField, HiddenField
+from wtforms import FileField, IntegerField, StringField, PasswordField, SubmitField, HiddenField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from market.models import User
 
@@ -39,4 +39,5 @@ class AddItemForm(FlaskForm):
     price = IntegerField(label='Price of Item',validators=[DataRequired()])
     barcode = StringField(label='Barcode', validators=[DataRequired()])
     description  = StringField(label='Description of item', validators=[DataRequired()])
+    img = FileField(label='Image Upload', validators=[DataRequired()])
     submit = SubmitField(label='Add this Item!')

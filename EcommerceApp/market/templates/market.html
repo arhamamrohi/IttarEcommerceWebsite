@@ -3,38 +3,77 @@
 Attar Market Shop
 {% endblock %}
 {% block content %}
-<div id="main-body" class="clearfix">
-    <div id="buy-sec">
-    <h1>
-        Welcom to Attar Market Shop
-    </h1>
-    <h2>
-        We have the best attar in the world.
-        {{ c_user.username }}
-        You wont find these items anywhere.
+<style>
+  #main-body {
+    width: 90%;
+  }
+  #buy-sec {
+    width: 60%;
+  }
+
+</style>
+<div id="main-body" class="clearfix bg-white ">
+  
+  <div id="buy-sec" >
+  
+    
+    <h2 class="text-2xl font-bold text-gray-800 mb-10 text-center">
+       -All Products-
     </h2>
+  
+  <div class="grid gap-12 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+
     {% for item in items %}
     {% include 'includes/items_modals.html' %}
     
-    <h2>{{item.name}}</h2>
-    <h3>Price {{item.price}}</h3>
-    <h3>{{item.description}}</h3>
     
-    <button class="btn" data-toggle="modal" 
-        data-target="#Modal-PurchaseConfirm-{{ item.id }}">Purchase this Item</button>
-    {% endfor  %}
+    <div class="max-w-sm  w-80 bg-white rounded-2xl shadow-md overflow-hidden m-4
+                         hover:shadow-xl transition-transform transform hover:-translate-y-1">
+
+        <img class="w-full h-64 object-cover" src="{{url_for('static',filename='uploads/'+item.name+".png")}}" alt="Ittar pic" width="300" height="300">
+        
+        <div class="p-5 space-y-3 text-center">
+            
+            <h2 class="text-xl font-semibold text-gray-800" >{{item.name}}</h2>
+            <p class="text-sm text-gray-600 product-description">{{item.description}}</p>
+            <p class="text-lg font-semibold text-gray-800">${{item.price}}</p>
+        
+            
+
+    
+            <button class="btn" data-toggle="modal" 
+            data-target="#Modal-PurchaseConfirm-{{ item.id }}">Buy Now</button>
+        </div>
     </div>
+    {% endfor  %}
+  </div>
+  
+  </div>
 
     <div class="nav-right">
-    <h2>Sell your items</h2>
+      <h2 class="text-2xl font-bold text-gray-800 mb-10 text-center">
+        -Sell your items-</h2>
     
-    {% for owned_item in owned_items %}
-    {% include 'includes/owned_items_modals.html' %}
+     {% for owned_item in owned_items %}
+     {% include 'includes/owned_items_modals.html' %}
 
-    <h5>{{ owned_item.name }}</h5>
-    <button type="button"  class="btn" data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+      <div class="max-w-sm bg-white rounded-2xl shadow-md overflow-hidden m-4
+                         hover:shadow-xl transition-transform transform hover:-translate-y-1">
+
+
+       <img class="w-full h-64 object-cover" src="{{url_for('static',filename='uploads/'+owned_item.name+".png")}}" 
+        alt="Ittar pic" width="300" height="300">
+
+        <div class="p-5 space-y-3 text-center">
+
+         <h2 class="text-xl font-semibold text-gray-800" >{{ owned_item.name }}</h2>
+         <p class="text-sm text-gray-600 product-description">{{owned_item.description}}</p>
+         <p class="text-lg font-semibold text-gray-800">${{ owned_item.price }}</p>
+
+         <button type="button"  class="btn" data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
            Sell this Item  </button>
-
+        </div>
+    </div>     
     <p class="card-text"><strong>
     This item costs {{ owned_item.price }}$
     </strong></p>
@@ -42,6 +81,49 @@ Attar Market Shop
     {% endfor %}
     </div>
 
+    <script>
+        const wordLimit = 20;
+    
+        document.querySelectorAll('.product-description').forEach(descEl => {
+          const fullText = descEl.textContent.trim();
+          const words = fullText.split(/\s+/);
+    
+          if (words.length > wordLimit) {
+            const shortText = words.slice(0, wordLimit).join(' ') + '...';
+    
+            const previewSpan = document.createElement('span');
+            previewSpan.className = 'desc-preview';
+            previewSpan.textContent = shortText;
+    
+            const fullSpan = document.createElement('span');
+            fullSpan.className = 'desc-full hidden';
+            fullSpan.textContent = fullText;
+    
+            const toggleBtn = document.createElement('button');
+            toggleBtn.textContent = ' Show more';
+            toggleBtn.className = 'text-teal-600 font-medium hover:underline ml-1';
+    
+            toggleBtn.addEventListener('click', () => {
+              const isHidden = fullSpan.classList.contains('hidden');
+              if (isHidden) {
+                fullSpan.classList.remove('hidden');
+                previewSpan.classList.add('hidden');
+                toggleBtn.textContent = ' Show less';
+              } else {
+                fullSpan.classList.add('hidden');
+                previewSpan.classList.remove('hidden');
+                toggleBtn.textContent = ' Show more';
+              }
+            });
+    
+            descEl.textContent = ''; // Clear original content
+            descEl.appendChild(previewSpan);
+            descEl.appendChild(fullSpan);
+            descEl.appendChild(toggleBtn);
+          }
+        });
+      </script>
+    
 
 </div>
 {% endblock %}
