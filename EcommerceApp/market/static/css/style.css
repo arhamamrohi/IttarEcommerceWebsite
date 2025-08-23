@@ -1,0 +1,92 @@
+body {
+    font-family: "abril Fatface",monospace;
+    background-color: #13213c;
+    min-height: 1300px;
+}
+
+
+a.nav-btn{
+    border-radius: 40px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.nav-right {
+float: right;
+width: 33.33%;
+
+}
+.nav-left {
+float: left;
+width: 33.33%;
+
+}
+.btn-right {
+float: right; 
+}
+
+
+
+.btn {
+color: #FFFFFF;
+background-color: #13213c;
+}
+
+.bg-grey {
+background-color: #e5e5e5;
+height: 70px;
+}
+.bg-blue {
+background-color: #13213c;
+}
+
+.box {
+clear: both;
+
+}
+.home-list {
+
+width: 300px;
+height: 300px;
+}
+#footer {
+clear: both;
+background-color: #13213c;
+height: 70px;
+color: #FFFFFF;
+}
+
+#main-body {
+clear: both;
+width: 70%;
+background-color: #FFFFFF;
+margin: auto;
+margin-top: 25px;
+margin-bottom: 25px;
+padding: 25px;
+text-align: center;
+
+
+}
+
+#main-text {
+float: right;
+width: 50%;
+background-color: #e5e5e5;
+}
+#main-img {
+float: left;
+width: 300px;
+height: 300px;
+}
+#main-img-right {
+float: right;
+width: 400;
+height: 210;
+
+}
+#buy-sec {
+float: left;
+width: 50%;
+}
+
